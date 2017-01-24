@@ -1,8 +1,8 @@
 pico-8 cartridge // http://www.pico-8.com
 version 10
 __lua__
--- funy tetris clone
--- by codl (real)
+-- the tiny master
+-- a copyright-infinging falling block game
 
 
 -- quick tetris glossary
