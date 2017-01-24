@@ -238,6 +238,20 @@ function drawfield()
 		end
 	end
 	clip()
+
+	-- next piece
+	rectfill(102, 4, 128, 17, 7)
+	local next = pieces[bag[1]][1]
+	for y = 1, #next do
+		for x = 1, #next[y] do
+			if next[y][x] != 0 then
+				spr(next[y][x],
+					103 + (x-1)*6,
+					-1 + (y-1)*6)
+			end
+		end
+	end
+	print("next", 83, 4, 0)
 end
 
 function shuffle(tab)
