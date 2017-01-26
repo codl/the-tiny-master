@@ -276,7 +276,7 @@ end
 
 
 
-function tmod(a, b)
+function mod(a, b)
  -- modulo but shifted for lua's weird ass tables
 	return (a-1) % b + 1
 end
@@ -285,21 +285,21 @@ end
 function collide(dx, dy, dr)
 	if(piece == nil) return false
 
-	local pd = pieces[piece][tmod(piecer + dr, #pieces[piece])]
+	local pd = pieces[piece][mod(piecer + dr, #pieces[piece])]
 	for y=#pd, 1, -1 do
-	 for x=1, #pd[y] do
-	 	local xx = x + piecex -1
-	  local yy = y + piecey -1
-	  if pd[y][x] != 0
-	  		and (
-	  			yy +dy > 22
-	  			or xx +dx < 1
-	  			or xx +dx > 10
-	  			or field[yy+dy][xx+dx] != 0
-	  		) then
-	  	return true
-	  end
-	 end
+		for x=1, #pd[y] do
+			local xx = x + piecex -1
+			local yy = y + piecey -1
+			if pd[y][x] != 0
+				and (
+				yy +dy > 22
+				or xx +dx < 1
+				or xx +dx > 10
+				or field[yy+dy][xx+dx] != 0
+				) then
+				return true
+			end
+		end
 	end
 	return false
 end
@@ -436,7 +436,7 @@ function step()
 			else
 				direction = -1
 			end
-			local newr = tmod(piecer+direction, #pieces[piece])
+			local newr = mod(piecer+direction, #pieces[piece])
 			if not collide(0,0,direction) then
 				piecer = newr
 			elseif
