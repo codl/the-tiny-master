@@ -432,11 +432,11 @@ function step()
 		if xor(btnpp(4), btnpp(5)) then
 			local direction
 			if btnpp(4) then
-				direction = -1
-			else
 				direction = 1
+			else
+				direction = -1
 			end
-			local newr = tmod(piecer-direction, #pieces[piece])
+			local newr = tmod(piecer+direction, #pieces[piece])
 			if not collide(0,0,direction) then
 				piecer = newr
 			elseif
