@@ -415,10 +415,22 @@ function step()
 				sfx(1)
 			end
 
-			-- todo check for loss (| || || |_)
+			-- todo play an sfx depending on the piece
 
-			l("bam!!! its a "..piece)
-			-- todo play a sfx
+			local pd=pieces[piece][piecer]
+			for y=1, #pd do
+				for x=1, #pd[y] do
+					if pd[y][x] != 0 and
+							field[y+piecey-1][x+piecex-1] != 0 then
+						_draw()
+						cursor(0,64)
+						color(0)
+						print("you have failed to save the worl")
+						print("d")
+						stop()
+					end
+				end
+			end
 		end
 	else
 		-- the das timer is incremented earlier
