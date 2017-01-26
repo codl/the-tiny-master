@@ -307,6 +307,10 @@ function collide(dx, dy, dr)
 	return false
 end
 
+function grounded()
+	return collide(0,1,0)
+end
+
 function lock()
 	local pd = pieces[piece][piecer]
 	for y = 1, #pd do
@@ -535,7 +539,7 @@ function step()
 					 piecex += 2
 					 piecer = newr
 					elseif piece == "i"
-							and collide(0, 1, 0) then
+							and grounded() then
 						if not collide(0, -1, direction) then
 							piecey -= 1
 							piecer = newr
@@ -563,7 +567,7 @@ function step()
 				gravtimer += gravity
 			end
 			while gravtimer >= 1 and
-					not collide(0,1,0)
+					not grounded()
 					do
 				piecey += 1
 				gravtimer -= 1
