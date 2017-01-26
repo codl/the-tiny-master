@@ -252,6 +252,9 @@ function drawfield()
 		end
 	end
 	print("next", 83, 4, 0)
+	
+	print("level "..level, 80, 70, 0)
+	print("grav "..gravity, 80, 76, 0)
 end
 
 function shuffle(tab)
@@ -314,9 +317,9 @@ function lock()
 			end
 		end
 		if is_clear(y + piecey -1) then
-			del(cleared, y + piecey - 1)
 			add(cleared, y + piecey - 1)
 			cleartimer = 0
+			set_level(level + 1)
 		end
 	end
 	piece = nil
@@ -363,6 +366,48 @@ function init()
 	das = 8
 	dasrepeat = 4
 	dastimer = -das
+	set_level(0)
+end
+
+
+-- tap master mode gravity settings
+gravities = {}
+gravities[0] = 4/256
+gravities[30] = 6/256
+gravities[35] = 8/256
+gravities[40] = 10/256
+gravities[50] = 12/256
+gravities[60] = 16/256
+gravities[70] = 32/256
+gravities[80] = 48/256
+gravities[90] = 64/256
+gravities[100] = 80/256
+gravities[120] = 96/256
+gravities[140] = 112/256
+gravities[160] = 128/256
+gravities[170] = 144/256
+gravities[200] = 4/256
+gravities[220] = 32/256
+gravities[230] = 64/256
+gravities[233] = 96/256
+gravities[236] = 128/256
+gravities[239] = 160/256
+gravities[243] = 192/256
+gravities[247] = 224/256
+gravities[251] = 1
+gravities[300] = 2
+gravities[330] = 3
+gravities[360] = 4
+gravities[400] = 5
+gravities[420] = 4
+gravities[450] = 3
+gravities[500] = 20
+
+function set_level(l)
+	level = l
+	if gravities[level] then
+		gravity = gravities[level]
+	end
 end
 
 function xor(a, b)
