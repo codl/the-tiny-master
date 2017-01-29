@@ -323,10 +323,10 @@ function lock()
 		if is_clear(y + piecey -1) then
 			add(cleared, y + piecey - 1)
 			cleartimer = 0
-			set_level(level + 1)
 		end
 	end
 	piece = nil
+	set_level(level + 1)
 end
 
 cleared = {}
